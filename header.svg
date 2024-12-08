@@ -1,0 +1,185 @@
+<svg fill="none" viewBox="0 0 1500 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                /* ベーススタイル */
+                :root {
+                    --base-size-8: 8px;
+                    --base-size-16: 16px;
+                    --base-font-size: 16px;
+                    --line-height: 1.5;
+                }
+
+                .container {
+                    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
+                    position: relative;
+                    overflow: hidden;
+                    padding: var(--base-size-16);
+                    box-sizing: border-box;
+                }
+
+                .aurora {
+                    position: absolute;
+                    width: 150%;
+                    height: 150%;
+                    background: 
+                        radial-gradient(circle at 50% -20%, rgba(147, 51, 234, 0.15) 0%, transparent 70%),
+                        radial-gradient(circle at 0% 120%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+                        radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+                    filter: blur(60px);
+                }
+
+                .content {
+                    position: relative;
+                    z-index: 1;
+                    text-align: center;
+                    padding: 3rem;
+                    background: rgba(15, 23, 42, 0.6);
+                    border-radius: 30px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+                    backdrop-filter: blur(20px);
+                }
+
+                .title {
+                    font-size: 120px;
+                    font-weight: 800;
+                    margin: 0;
+                    background: linear-gradient(120deg, 
+                        #10b981 0%, 
+                        #3b82f6 25%, 
+                        #9333ea 50%,
+                        #3b82f6 75%,
+                        #10b981 100%);
+                    background-size: 400% auto;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    text-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+                    animation: shine 15s linear infinite;
+                }
+
+                .subtitle {
+                    font-size: 48px;
+                    margin: 24px 0 0 0;
+                    letter-spacing: 2px;
+                    font-weight: 300;
+                }
+
+                .subtitle-gradient {
+                    background: linear-gradient(120deg, #e2e8f0, #f8fafc);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                }
+
+                .emoji {
+                    color: #f8fafc;
+                }
+
+                .info-text {
+                    font-size: 28px;
+                    color: #94a3b8;
+                    margin: 24px 0;
+                    letter-spacing: 1px;
+                    line-height: 1.5;
+                    font-weight: 300;
+                }
+
+                .highlight {
+                    color: #10b981;
+                    font-weight: 500;
+                    text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+                }
+
+                @keyframes shine {
+                    0% { background-position: 0% center; }
+                    100% { background-position: 400% center; }
+                }
+
+                /* GitHubのブレークポイントに合わせたレスポンシブ対応 */
+                @media (min-width: 1012px) {
+                    .container {
+                        padding: var(--base-size-16);
+                    }
+                    .content {
+                        max-width: 1012px;
+                        padding: 3rem;
+                    }
+                    .title {
+                        font-size: 120px;
+                    }
+                }
+
+                @media (min-width: 768px) and (max-width: 1011px) {
+                    .container {
+                        padding: var(--base-size-16);
+                    }
+                    .content {
+                        width: 95%;
+                        padding: 2rem;
+                    }
+                    .title {
+                        font-size: calc(60px + 2vw);
+                    }
+                    .subtitle {
+                        font-size: calc(24px + 1vw);
+                    }
+                    .info-text {
+                        font-size: calc(18px + 0.5vw);
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    .container {
+                        padding: var(--base-size-8);
+                    }
+                    .content {
+                        width: 100%;
+                        padding: 1.5rem;
+                        border-radius: 20px;
+                    }
+                    .title {
+                        font-size: calc(36px + 3vw);
+                    }
+                    .subtitle {
+                        font-size: calc(16px + 1.5vw);
+                        margin: 12px 0 0 0;
+                    }
+                    .info-text {
+                        font-size: calc(14px + 1vw);
+                        margin: 12px 0;
+                        line-height: var(--line-height);
+                    }
+                }
+
+                /* アクセシビリティ対応 */
+                @media (prefers-reduced-motion: reduce) {
+                    .title {
+                        animation: none;
+                    }
+                }
+            </style>
+            <div class="container">
+                <div class="aurora"></div>
+                <div class="content">
+                    <h1 class="title">Hi! I'm nezumi🐭</h1>
+                    <p class="subtitle">
+                        <span class="subtitle-gradient">A Python Developer from Japan</span>
+                        <span class="emoji">🐍</span>
+                    </p>
+                    <p class="info-text">
+                        <span class="highlight">16-year-old</span> developer based in <span class="highlight">Fukuoka, Japan</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </foreignObject>
+</svg>
