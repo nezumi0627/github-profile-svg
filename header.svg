@@ -8,6 +8,10 @@
                     --base-size-16: 16px;
                     --base-font-size: 16px;
                     --line-height: 1.5;
+                    --content-padding: clamp(1rem, 3vw, 3rem);
+                    --title-size: clamp(2rem, 8vw, 120px);
+                    --subtitle-size: clamp(1rem, 4vw, 48px);
+                    --info-size: clamp(0.875rem, 2vw, 28px);
                 }
 
                 .container {
@@ -21,7 +25,9 @@
                     background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
                     position: relative;
                     overflow: hidden;
-                    padding: var(--base-size-16);
+                    padding: clamp(var(--base-size-8), 2vw, var(--base-size-16));
+                    min-height: 400px;
+                    aspect-ratio: 1500/800;
                     box-sizing: border-box;
                 }
 
@@ -40,16 +46,18 @@
                     position: relative;
                     z-index: 1;
                     text-align: center;
-                    padding: 3rem;
+                    padding: var(--content-padding);
                     background: rgba(15, 23, 42, 0.6);
-                    border-radius: 30px;
+                    border-radius: clamp(16px, 3vw, 30px);
                     border: 1px solid rgba(255, 255, 255, 0.1);
                     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
                     backdrop-filter: blur(20px);
+                    width: clamp(280px, 90%, 1012px);
+                    margin: auto;
                 }
 
                 .title {
-                    font-size: 120px;
+                    font-size: var(--title-size);
                     font-weight: 800;
                     margin: 0;
                     background: linear-gradient(120deg, 
@@ -64,12 +72,13 @@
                     color: transparent;
                     text-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
                     animation: shine 15s linear infinite;
+                    line-height: 1.2;
                 }
 
                 .subtitle {
-                    font-size: 48px;
-                    margin: 24px 0 0 0;
-                    letter-spacing: 2px;
+                    font-size: var(--subtitle-size);
+                    margin: clamp(12px, 2vw, 24px) 0 0 0;
+                    letter-spacing: clamp(1px, 0.5vw, 2px);
                     font-weight: 300;
                 }
 
@@ -85,11 +94,11 @@
                 }
 
                 .info-text {
-                    font-size: 28px;
+                    font-size: var(--info-size);
                     color: #94a3b8;
-                    margin: 24px 0;
-                    letter-spacing: 1px;
-                    line-height: 1.5;
+                    margin: clamp(12px, 2vw, 24px) 0;
+                    letter-spacing: clamp(0.5px, 0.2vw, 1px);
+                    line-height: var(--line-height);
                     font-weight: 300;
                 }
 
@@ -104,59 +113,24 @@
                     100% { background-position: 400% center; }
                 }
 
-                /* GitHubのブレークポイントに合わせたレスポンシブ対応 */
-                @media (min-width: 1012px) {
-                    .container {
-                        padding: var(--base-size-16);
-                    }
-                    .content {
-                        max-width: 1012px;
-                        padding: 3rem;
-                    }
-                    .title {
-                        font-size: 120px;
-                    }
-                }
-
-                @media (min-width: 768px) and (max-width: 1011px) {
-                    .container {
-                        padding: var(--base-size-16);
-                    }
-                    .content {
-                        width: 95%;
-                        padding: 2rem;
-                    }
-                    .title {
-                        font-size: calc(60px + 2vw);
-                    }
-                    .subtitle {
-                        font-size: calc(24px + 1vw);
-                    }
-                    .info-text {
-                        font-size: calc(18px + 0.5vw);
-                    }
-                }
-
+                /* レスポンシブ対応 */
                 @media (max-width: 767px) {
                     .container {
-                        padding: var(--base-size-8);
+                        min-height: 300px;
                     }
+                    
+                    .aurora {
+                        filter: blur(30px);
+                    }
+
                     .content {
-                        width: 100%;
-                        padding: 1.5rem;
-                        border-radius: 20px;
+                        backdrop-filter: blur(10px);
                     }
-                    .title {
-                        font-size: calc(36px + 3vw);
-                    }
-                    .subtitle {
-                        font-size: calc(16px + 1.5vw);
-                        margin: 12px 0 0 0;
-                    }
-                    .info-text {
-                        font-size: calc(14px + 1vw);
-                        margin: 12px 0;
-                        line-height: var(--line-height);
+                }
+
+                @media (max-width: 480px) {
+                    .container {
+                        min-height: 250px;
                     }
                 }
 
