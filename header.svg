@@ -9,13 +9,19 @@
                     justify-content: center;
                     margin: 0;
                     width: 100%;
+                    min-height: fit-content;
                     background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
                     position: relative;
                     overflow: hidden;
+                    padding: 2rem 0;
                 }
 
                 .aurora {
                     position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
                     background: 
                         radial-gradient(circle at 50% -20%, rgba(147, 51, 234, 0.15) 0%, transparent 70%),
                         radial-gradient(circle at 0% 120%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
