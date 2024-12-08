@@ -6,7 +6,7 @@
 				width="100%" 
 				height="auto" 
 				alt="header" 
-				style="box-sizing: border-box; max-width: 1012px; min-width: 280px; padding: 16px;"
+				style="box-sizing: border-box; max-width: 1012px; min-width: 320px; padding: clamp(8px, 2vw, 16px);"
 			>
 		</picture>
 	</themed-picture>
