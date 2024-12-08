@@ -1,142 +1,112 @@
-<svg fill="none" viewBox="0 0 1000 400" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-    <style>
-        .ruler-text {
-            font-family: monospace;
-            font-size: 11px;
-            fill: #333;
-        }
-        .ruler-line {
-            stroke: #666;
-            stroke-width: 1;
-        }
-        .ruler-major {
-            stroke: #333;
-            stroke-width: 2;
-        }
-        .ruler-minor {
-            stroke: #999;
-            stroke-width: 0.5;
-        }
-        .grid {
-            stroke: #666;
-            stroke-width: 0.5;
-            opacity: 0.1;
-        }
-    </style>
-
-    <script type="text/javascript"><![CDATA[
-        function generateRulers() {
-            const width = 1000;
-            const height = 400;
-            const majorInterval = 100;
-            const minorInterval = 10;
-
-            // 横方向の定規を生成
-            const hRuler = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            hRuler.setAttribute("id", "horizontal-ruler");
-
-            // ベースライン
-            const baseLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            baseLine.setAttribute("x1", "0");
-            baseLine.setAttribute("y1", "20");
-            baseLine.setAttribute("x2", width);
-            baseLine.setAttribute("y2", "20");
-            baseLine.setAttribute("class", "ruler-line");
-            hRuler.appendChild(baseLine);
-
-            // 目盛りを生成
-            for (let x = 0; x <= width; x += minorInterval) {
-                const isMajor = x % majorInterval === 0;
-                const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                tick.setAttribute("x1", x);
-                tick.setAttribute("y1", isMajor ? 15 : 18);
-                tick.setAttribute("x2", x);
-                tick.setAttribute("y2", isMajor ? 25 : 22);
-                tick.setAttribute("class", isMajor ? "ruler-major" : "ruler-minor");
-                hRuler.appendChild(tick);
-
-                if (isMajor) {
-                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                    text.setAttribute("x", x);
-                    text.setAttribute("y", 40);
-                    text.setAttribute("class", "ruler-text");
-                    text.setAttribute("text-anchor", "middle");
-                    text.textContent = x;
-                    hRuler.appendChild(text);
+<svg fill="none" viewBox="0 0 1500 800" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                .container {
+                    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    width: 100%;
+                    height: 800px;
+                    background: linear-gradient(125deg, #0f172a 0%, #1e293b 100%);
+                    position: relative;
+                    overflow: hidden;
                 }
-            }
 
-            // 縦方向の定規を生成
-            const vRuler = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            vRuler.setAttribute("id", "vertical-ruler");
-
-            // ベースライン
-            const vBaseLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            vBaseLine.setAttribute("x1", "20");
-            vBaseLine.setAttribute("y1", "0");
-            vBaseLine.setAttribute("x2", "20");
-            vBaseLine.setAttribute("y2", height);
-            vBaseLine.setAttribute("class", "ruler-line");
-            vRuler.appendChild(vBaseLine);
-
-            // 目盛りを生成
-            for (let y = 0; y <= height; y += minorInterval) {
-                const isMajor = y % majorInterval === 0;
-                const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                tick.setAttribute("x1", isMajor ? 15 : 18);
-                tick.setAttribute("y1", y);
-                tick.setAttribute("x2", isMajor ? 25 : 22);
-                tick.setAttribute("y2", y);
-                tick.setAttribute("class", isMajor ? "ruler-major" : "ruler-minor");
-                vRuler.appendChild(tick);
-
-                if (isMajor) {
-                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                    text.setAttribute("x", 30);
-                    text.setAttribute("y", y);
-                    text.setAttribute("class", "ruler-text");
-                    text.setAttribute("dominant-baseline", "middle");
-                    text.textContent = y;
-                    vRuler.appendChild(text);
+                .aurora {
+                    position: absolute;
+                    width: 150%;
+                    height: 150%;
+                    background: 
+                        radial-gradient(circle at 50% -20%, rgba(147, 51, 234, 0.15) 0%, transparent 70%),
+                        radial-gradient(circle at 0% 120%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+                        radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+                    filter: blur(60px);
                 }
-            }
 
-            // グリッドを生成
-            const grid = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            grid.setAttribute("class", "grid");
+                .content {
+                    position: relative;
+                    z-index: 1;
+                    text-align: center;
+                    padding: 3rem;
+                    background: rgba(15, 23, 42, 0.6);
+                    border-radius: 30px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+                    backdrop-filter: blur(20px);
+                }
 
-            // 横線
-            for (let y = minorInterval; y < height; y += minorInterval) {
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", "0");
-                line.setAttribute("y1", y);
-                line.setAttribute("x2", width);
-                line.setAttribute("y2", y);
-                grid.appendChild(line);
-            }
+                .title {
+                    font-size: 120px;
+                    font-weight: 800;
+                    margin: 0;
+                    background: linear-gradient(120deg, 
+                        #10b981 0%, 
+                        #3b82f6 25%, 
+                        #9333ea 50%,
+                        #3b82f6 75%,
+                        #10b981 100%);
+                    background-size: 400% auto;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                    text-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+                    animation: shine 15s linear infinite;
+                }
 
-            // 縦線
-            for (let x = minorInterval; x < width; x += minorInterval) {
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", x);
-                line.setAttribute("y1", "0");
-                line.setAttribute("x2", x);
-                line.setAttribute("y2", height);
-                grid.appendChild(line);
-            }
+                .subtitle {
+                    font-size: 48px;
+                    margin: 24px 0 0 0;
+                    letter-spacing: 2px;
+                    font-weight: 300;
+                }
 
-            // 要素を追加
-            document.querySelector("svg").appendChild(grid);
-            document.querySelector("svg").appendChild(hRuler);
-            document.querySelector("svg").appendChild(vRuler);
-        }
+                .subtitle-gradient {
+                    background: linear-gradient(120deg, #e2e8f0, #f8fafc);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                }
 
-        // SVGが読み込まれたら実行
-        window.addEventListener("load", generateRulers);
-    ]]></script>
+                .emoji {
+                    color: #f8fafc;
+                }
 
-    <!-- サイズ表示 -->
-    <text x="500" y="200" text-anchor="middle" class="ruler-text" font-size="24">
-        1000 x 400
-    </text>
+                .info-text {
+                    font-size: 28px;
+                    color: #94a3b8;
+                    margin: 24px 0;
+                    letter-spacing: 1px;
+                    line-height: 1.5;
+                    font-weight: 300;
+                }
+
+                .highlight {
+                    color: #10b981;
+                    font-weight: 500;
+                    text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+                }
+
+                @keyframes shine {
+                    0% { background-position: 0% center; }
+                    100% { background-position: 400% center; }
+                }
+            </style>
+            <div class="container">
+                <div class="aurora"></div>
+                <div class="content">
+                    <h1 class="title">Hi! I'm nezumi🐭</h1>
+                    <p class="subtitle">
+                        <span class="subtitle-gradient">A Python Developer from Japan</span>
+                        <span class="emoji">🐍</span>
+                    </p>
+                    <p class="info-text">
+                        <span class="highlight">16-year-old</span> developer based in <span class="highlight">Fukuoka, Japan</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </foreignObject>
 </svg>
