@@ -1,4 +1,6 @@
 <svg fill="none" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- background -->
+    <rect width="100%" height="100%" fill="#ffffff"/>
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
