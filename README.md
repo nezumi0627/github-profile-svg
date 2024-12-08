@@ -1,1 +1,1 @@
-![Profile Header](header.svg)
+![Profile-Header](header.svg)
